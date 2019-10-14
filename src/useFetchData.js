@@ -14,7 +14,13 @@ export default function useSubmitData({endpoint}) {
           headers: {'Authorization': `Bearer ${cookies.authtoken}`}
         })
         .then(r => r.json())
-        .then(response => setRes({data: response, loading: false, error: null}))
+        .then(response => {
+          if(response.success === false) {
+            setRes({data: [], loading: false, error: response.errors})
+          } else {
+            setRes({data: response, loading: false, error: null})
+          }
+        })
         .catch(err => setRes({loading: false, data: [], error: err}))
     }
   }, [cookies, endpoint, state])

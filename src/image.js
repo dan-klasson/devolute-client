@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Alert } from 'react-bootstrap'
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { useCookies } from 'react-cookie'
@@ -27,7 +27,7 @@ export default function Image() {
 
   if (loading) return <Spinner />
   if(!cookies.authtoken) return <Redirect to="/login" />
-  if (error) return <div>{error}</div>
+  if (error && error.token) return <Alert variant="danger">{error.token}</Alert>
 
   const ImageCol = (props) => {
     return (
