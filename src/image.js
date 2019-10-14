@@ -36,6 +36,7 @@ export default function Image() {
           href={props.object.standard}
           className="d-block mb-4 h-100"
           target="_blank"
+          rel="noopener noreferrer"
           data-testid="image-link"
         >
           <img 
